@@ -16,7 +16,7 @@ Route::view('/', 'welcome')->name('welcome');
 Route::group(['middleware' => ['auth'], 'prefix' => 'dashboard'], function () {
     Route::get('/', 'DashboardController@index')->name('dashboard');
 
-    Route::group(['prefix' => 'budgets', 'as' => 'budgets.'], function() {
+    Route::group(['prefix' => 'budgets', 'as' => 'budgets.'], function () {
         Route::get('/', 'BudgetsController@index')->name('index');
         Route::get('{budget}', 'BudgetsController@show')->name('show');
         Route::post('store', 'BudgetsController@store')->name('store');
@@ -25,3 +25,5 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'dashboard'], function () {
 
 
 Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

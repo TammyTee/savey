@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\Budget;
 use App\BudgetCategory;
 use App\User;
@@ -15,12 +17,12 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         // create a 2 users that have 2 Budgets that have 3 expenses each
-        $users = factory(User::class, 2)->create();
-        $users->each(function($user){
-            $category = factory(BudgetCategory::class)->make();
+        $users = User::factory()->count(2)->create();
+        $users->each(function ($user) {
+            $category = BudgetCategory::factory()->create();
             $user->budgetCategories()->save($category);
 
-            $budgets = factory(Budget::class, 2)->make([
+            $budgets = Budget::factory()->count(2)->create([
                 'budget_category_id' => $category->id,
             ]);
 

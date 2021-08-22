@@ -1,15 +1,19 @@
 <?php
 
-/* @var $factory \Illuminate\Database\Eloquent\Factory */
+namespace Database\Factories;
 
-use App\Budget;
 use App\User;
-use Faker\Generator as Faker;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-$factory->define(Budget::class, function (Faker $faker) {
-    return [
-        'name' => $faker->text(25),
-        'description' => $faker->paragraph(),
-        'user_id' => factory(User::class)->create()->id,
-    ];
-});
+class BudgetFactory extends Factory
+{
+
+    public function definition()
+    {
+        return [
+            'name' => $this->faker->text(25),
+            'description' => $this->faker->paragraph(),
+            'user_id' => User::factory()->create()->id,
+        ];
+    }
+}
